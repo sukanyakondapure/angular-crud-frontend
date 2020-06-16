@@ -1,0 +1,47 @@
+{
+  "$schema": "./node_modules/@angular/service-worker/config/schema.json",
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "resources": {
+        "files": [
+          "/favicon.ico",
+          "/index.html",
+          "/manifest.webmanifest",
+          "/*.css",
+          "/*.js"
+        ],
+        "urls": [
+          "https://jsonplaceholder.typicode.com/**",
+          "http://localhost:5000/**"
+          
+        ]
+      }
+    }, {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "/assets/**",
+          "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
+        ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name":"albums-api",
+      "urls": ["https://jsonplaceholder.typicode.com/albums","http://localhost:5000/update/","https://jsonplaceholder.typicode.com/photos?albumId=${albumId}","http://localhost:5000/user","http://localhost:5000/user_v"],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "maxSize":100,
+        "maxAge": "1h",
+        "timeout": "5s"
+      }
+     
+    }
+  ]
+}
